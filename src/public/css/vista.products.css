@@ -1,0 +1,196 @@
+.vistaProductsNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 10px;
+  padding: 10px;
+}
+.principalIcon {
+  width: 10%;
+}
+.titleVistaProducts {
+  font-family: "Poppins", sans-serif;
+  color: #ff1744;
+  font-size: 36px;
+  font-weight: 700;
+}
+.infoUserContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+.infoUserChild {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.infoUser {
+  text-align: left;
+  font-size: 17px;
+  color: #212121;
+  font-weight: 700;
+}
+.userIcon {
+  font-size: 30px !important;
+  color: #212121;
+}
+.cartIcon {
+  font-size: 30px !important;
+  color: #212121;
+}
+.logoutIcon {
+  font-size: 30px !important;
+  color: #212121;
+}
+.productsContainer {
+  display: grid;
+  margin: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 450px));
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  justify-content: center;
+  align-content: center;
+}
+.productChild {
+  margin-top: 40px;
+  width: 85%;
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.014),
+    0.1px 0px 5.3px rgba(0, 0, 0, 0.025), 0.2px 0px 10px rgba(0, 0, 0, 0.034),
+    0.5px 0px 17.9px rgba(0, 0, 0, 0.041), 1.3px 0px 33.4px rgba(0, 0, 0, 0.048),
+    4px 0px 80px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s;
+}
+.imgProductContainer {
+  height: 50%;
+}
+.imgProductChild {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.infoProductContainer {
+  padding: 0px 10px 0px 10px;
+  height: 50%;
+  display: grid;
+  justify-items: start;
+  align-items: center;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.buyInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.buyButton {
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: white;
+  background-color: #ff1744;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+.productChild:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+.productChild:hover .imgProductChild {
+  transform: scale(1.07);
+  transition: transform 0.3s;
+}
+
+.paginateToolsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.paginateToolsChild {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 25%;
+}
+.hrProductsPaginate {
+  width: 25%;
+  background-color: #212121;
+}
+.hrefProducts {
+  text-decoration: none !important;
+}
+.paginateIcon {
+  font-size: 30px !important;
+  color: #212121;
+}
+
+.pageContainer {
+  position: relative;
+}
+.messageContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  border-radius: 50%;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.014),
+    0.1px 0px 5.3px rgba(0, 0, 0, 0.025), 0.2px 0px 10px rgba(0, 0, 0, 0.034),
+    0.5px 0px 17.9px rgba(0, 0, 0, 0.041), 1.3px 0px 33.4px rgba(0, 0, 0, 0.048),
+    4px 0px 80px rgba(0, 0, 0, 0.07);
+}
+.chathref {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconMessage {
+  color: #ff1744;
+}
+.buttonLogOut {
+  margin-left: 10px;
+  width: 100px;
+  height: 50px;
+  transition: 0.2s;
+}
+.buttonLogOut:hover {
+  transform: scale(1.01);
+  transition: 0.2s;
+}
+.buttonLogOutChild {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  background-color: #ff1744;
+  color: white;
+}
+.hrefLogout {
+  width: 100%;
+  height: 100%;
+}
+.TopInfoUser{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+}
+
+

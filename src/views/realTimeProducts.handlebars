@@ -1,0 +1,82 @@
+<div class="pageContainer">
+  <nav class="vistaProductsNav">
+    <img
+      src="../images/pizza.ico"
+      alt="El lugar de las Pizzas"
+      class="principalIcon"
+    />
+  </nav>
+  <div class="registerProductContainer">
+    <form>
+      <h2 class="titleRealTimeProduct">Registra el producto</h2>
+      <div class="inputsRealTimeProductContainer">
+        <input
+          type="text"
+          placeholder="Nombre"
+          name="title"
+          id="nombre"
+          value=""
+          required
+          class="inputsRealTimeProductChild"
+        />
+        <input
+          type="text"
+          placeholder="Descripcion"
+          name="description"
+          id="descripcion"
+          value=""
+          required
+          class="inputsRealTimeProductChild"
+        />
+        <input
+          type="text"
+          placeholder="Código"
+          name="code"
+          id="code"
+          value=""
+          required
+          class="inputsRealTimeProductChild"
+        />
+        <input
+          type="number"
+          placeholder="Stock"
+          name="stock"
+          id="stock"
+          value=""
+          required
+          class="inputsRealTimeProductChild"
+        />
+
+        <input
+          type="number"
+          placeholder="Precio"
+          name="price"
+          id="price"
+          value=""
+          required
+          class="inputsRealTimeProductChild"
+        />
+        <button
+          class="buttonRealTimeProducts"
+          type="submit"
+          id="enviar"
+        >Enviar</button>
+      </div>
+    </form>
+  </div>
+  <div class="productsContainer" id="productsContainer">
+    {{!-- Products with socket.io --}}
+  </div>
+  <div class="messageContainer">
+    <a href="/vista/chat" class="chathref">
+      <div class="messageChild">
+        <span class="material-symbols-outlined iconMessage">
+          forum
+        </span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="{{root}}/javascript/realTimeProducts.js"></script>

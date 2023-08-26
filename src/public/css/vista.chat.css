@@ -1,0 +1,151 @@
+.ChatContainer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  height: 60%;
+}
+.sectionInfoMessage {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+  align-self: flex-start;
+}
+.sectionMessage {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+#messagesContainer {
+  padding: 20px;
+  max-height: 100%;                             
+  width: 60%;
+  box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.014),
+    0.1px 0px 5.3px rgba(0, 0, 0, 0.025), 0.2px 0px 10px rgba(0, 0, 0, 0.034),
+    0.5px 0px 17.9px rgba(0, 0, 0, 0.041), 1.3px 0px 33.4px rgba(0, 0, 0, 0.048),
+    4px 0px 80px rgba(0, 0, 0, 0.07);
+  background-color: white;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  overflow-y: auto;
+}
+#messagesContainer::-webkit-scrollbar {
+  width: 8px; 
+}
+
+#messagesContainer::-webkit-scrollbar-thumb {
+  background-color: #ff1744; 
+  border-radius: 8px; 
+}
+
+#messagesContainer::-webkit-scrollbar-track {
+  background-color: #dddddd; 
+}
+.h2Chat {
+  font-family: "Poppins", sans-serif;
+}
+
+.inputChat {
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  color: #212121;
+  font-size: 16px;
+  width: 400px;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.014),
+    0.1px 0px 5.3px rgba(0, 0, 0, 0.025), 0.2px 0px 10px rgba(0, 0, 0, 0.034),
+    0.5px 0px 17.9px rgba(0, 0, 0, 0.041), 1.3px 0px 33.4px rgba(0, 0, 0, 0.048),
+    4px 0px 80px rgba(0, 0, 0, 0.07);
+  background-color: white;
+}
+.inputChat::placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #212121;
+  font-weight: normal;
+  font-size: 16px;
+}
+.inputsChat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.textaAreaChat {
+  height: 300px;
+  resize: none;
+}
+textarea.inputChat::-webkit-scrollbar {
+  width: 8px; 
+}
+
+textarea.inputChat::-webkit-scrollbar-thumb {
+  background-color: #ff1744; 
+  border-radius: 5px; 
+}
+
+textarea.inputChat::-webkit-scrollbar-track {
+  background-color: #f2f2f2; 
+  border-radius: 5px; 
+}
+
+#submitMessage {
+  width: 200px;
+  border: none;
+  background-color: #ff1744;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-weight: normal;
+  font-size: 16px;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#submitMessage:hover {
+  transform: scale(1.02);
+  transition: 0.3s;
+}
+
+.message-bubble {
+  position: relative;
+  display: inline-block;
+  max-width: 80%; /* Ajusta el ancho máximo según tus necesidades */
+  padding: 15px;
+  background-color: #ff1744; /* Color del fondo del mensaje */
+  border-radius: 15px;
+  margin: 10px 0;
+  color: white;
+}
+
+.message-bubble::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-right-color: #ff1744;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.spanChat {
+  color: white;
+  font-weight: normal;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+}
+.pChat {
+  color: white;
+  font-weight: normal;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}

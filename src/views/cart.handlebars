@@ -1,0 +1,32 @@
+<div class="cartVistaPage">
+  <h1 class="cartUserH1">Detalles de su compra</h1>
+
+  <table class="productCartTable">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Producto</th>
+        <th>Descripción</th>
+        <th>Código</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each productos}}
+        <tr class="productCartRow">
+          <td class="productImageCell">
+            <img src={{this.product.thumbnails}} alt={{this.product.title}} />
+          </td>
+          <td>
+            <p>{{this.product.title}}</p>
+          </td>
+          <td>{{this.product.description}}</td>
+          <td>{{this.product.code}}</td>
+          <td>S/. {{this.product.price}}</td>
+          <td>{{this.quantity}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

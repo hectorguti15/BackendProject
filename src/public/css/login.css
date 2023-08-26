@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Open+Sans:ital,wght@1,300&family=Poppins:wght@100;200&display=swap");
+
+.loginContainer {
+  background-image: url("../images/background.png");
+  background-size: cover;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+.loginChild {
+  position: absolute;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 
+  0px 0px 72px rgba(194, 194, 194, 0.044),
+  0px 0px 128px rgba(194, 194, 194, 0.044),
+  0px 0px 135px rgba(194, 194, 194, 0.044),
+  0px 0px 130px rgba(194, 194, 194, 0.044),
+  0px 0px 120px rgba(194, 194, 194, 0.044),
+  0px 0px 106px rgba(194, 194, 194, 0.044);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.loginFormContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.loginForm {
+  width:65%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-rows: 1fr 1fr 10px 1fr;
+  gap: 20px;
+  margin: 0;
+}
+.loginInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  text-align: left;
+  padding: 10px;
+  background: none;
+  border-bottom: 2px solid rgb(180, 180, 180);
+  transition: 0.5s;
+  color:rgb(121, 121, 121);
+}
+.loginInput:focus {
+  border-bottom: 2px solid #f57f17;
+  transition: 0.5s;
+}
+.loginInput::placeholder {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  text-align: left;
+  color:rgb(121, 121, 121);
+}
+.imgLoginChef {
+  position: absolute;
+  bottom: 0;
+  width: 250px;
+}
+.loginButton {
+  width: 100%;
+  height: 40px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  border: none;
+  background-color: #ff1744;
+  color: whitesmoke;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.loginButton:hover {
+  box-shadow:
+  0px 0px 30.7px rgba(255, 23, 68, 0.15),
+  0px 0px 57.5px rgba(255, 23, 68, 0.15),
+  0px 0px 80.2px rgba(255, 23, 68, 0.15),
+  0px 0px 99px rgba(255, 23, 68, 0.15),
+  0px 0px 119.8px rgba(255, 23, 68, 0.15),
+  0px 0px 218px rgba(255, 23, 68, 0.15);
+  transition: 0.5s;
+}
+.registerHrefLogin {
+  width: 65%;
+}
+.registerLoginButton{
+  width: 100%;
+  height: 40px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  border: none;
+  background-color: #ff1744;
+  color: whitesmoke;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.registerLoginButton:hover {
+  box-shadow:
+  0px 0px 30.7px rgba(255, 23, 68, 0.15),
+  0px 0px 57.5px rgba(255, 23, 68, 0.15),
+  0px 0px 80.2px rgba(255, 23, 68, 0.15),
+  0px 0px 99px rgba(255, 23, 68, 0.15),
+  0px 0px 119.8px rgba(255, 23, 68, 0.15),
+  0px 0px 218px rgba(255, 23, 68, 0.15);
+  transition: 0.5s;
+}
+.divider{
+  display: flex;
+  gap: 8px;
+  width: 65%;;
+  align-items: center;
+  justify-content: center;
+  color: rgb(180, 180, 180);
+}
+hr{
+  width: 100%;
+  background-color: rgb(180, 180, 180);
+  height: 1px;
+}
+span{
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+.loginMessage{
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  color: #FF1744;
+  text-align: left;
+}

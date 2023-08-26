@@ -1,0 +1,20 @@
+.errorPage{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.errorH1{
+    font-family: "Poppins", sans-serif;
+    font-size: 48px;
+}
+.errorSpan{
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+.pizzaErrorImg{
+    width: 180px;
+}

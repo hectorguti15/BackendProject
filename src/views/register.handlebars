@@ -1,0 +1,77 @@
+<div class="loginContainer">
+  <div class="loginChild">
+    <div class="loginFormContainer">
+      <div class="githubRegisterContainer">
+        <a class="hrefRegisterGithub" href="/login/github"><img
+            class="githublogoImg"
+            src="../images/githublogo.png"
+          /></a>
+      </div>
+
+      <hr class="principalHr" />
+      <form class="loginForm registerForm" action="/register" method="POST">
+        <input
+          class="firstName loginInput registerInput"
+          id="firstName"
+          name="firstName"
+          type="text"
+          placeholder="Nombres"
+          required
+        />
+        <input
+          class="lastName loginInput registerInput"
+          id="lastName"
+          name="lastName"
+          type="text"
+          placeholder="Apellidos"
+          required
+        />
+        <input
+          class="age loginInput registerInput"
+          id="age"
+          name="age"
+          type="number"
+          placeholder="Edad"
+          required
+        />
+        <input
+          class="email loginInput registerInput"
+          id="email"
+          name="email"
+          type="text"
+          placeholder="E-mail"
+          required
+        />
+        <input
+          class="password loginInput registerInput"
+          id="password"
+          name="password"
+          type="text"
+          placeholder="Contraseña"
+          required
+        />
+        {{#if message}}
+          <span class="loginMessage">{{message}}</span>
+        {{else}}
+          <span class="loginMessage"></span>
+        {{/if}}
+        <input
+          type="submit"
+          value="Sing up"
+          class="loginButton registerButton"
+        />
+      </form>
+
+      <div class="divider">
+        <hr />
+        <span>O</span>
+        <hr />
+      </div>
+      <a class="registerHrefLogin" href="/login"><button
+          class="loginButton registerButton"
+          class="registerLoginButton"
+        >Login</button></a>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "Pizza Margarita",
+    "description": "Clásica pizza italiana con tomate, mozzarella y albahaca.",
+    "code": "MARG01",
+    "price": 9.99,
+    "status": "available",
+    "stock": 25,
+    "thumbnails": "http://localhost:8080/images/margeritapizza.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Pizza Suprema",
+    "description": "Cargada con varios ingredientes, incluyendo pepperoni, salchicha, pimientos y más.",
+    "code": "SUPR02",
+    "price": 14.49,
+    "status": "available",
+    "stock": 20,
+    "thumbnails": "http://localhost:8080/images/supremepizza.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Pizza de Pollo a la Barbacoa",
+    "description": "Salsa barbacoa, pollo a la parrilla y cebolla morada.",
+    "code": "BBQC03",
+    "price": 12.99,
+    "status": "available",
+    "stock": 18,
+    "thumbnails": "http://localhost:8080/images/bbqpollopizza.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Pizza Carnívora",
+    "description": "Para los amantes de la carne: repleta de diferentes tipos de carne.",
+    "code": "MEAT05",
+    "price": 15.99,
+    "status": "available",
+    "stock": 17,
+    "thumbnails": "http://localhost:8080/images/pizzacarnivora.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Pizza Cuatro Quesos",
+    "description": "Un sueño para los amantes del queso, con cuatro tipos diferentes.",
+    "code": "CHEESE06",
+    "price": 13.49,
+    "status": "available",
+    "stock": 21,
+    "thumbnails": "http://localhost:8080/images/pizzacuatroquesos.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Pizza Locura de Champiñones",
+    "description": "Llena de diferentes tipos de champiñones para un sabor intenso.",
+    "code": "MUSH07",
+    "price": 10.99,
+    "status": "available",
+    "stock": 19,
+    "thumbnails": "http://localhost:8080/images/pizzachampiñones.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Pizza Pasión por el Pesto",
+    "description": "Pesto de albahaca fresca, tomates secados al sol y mozzarella.",
+    "code": "PESTO08",
+    "price": 12.99,
+    "status": "available",
+    "stock": 23,
+    "thumbnails": "http://localhost:8080/images/pasionporelpestopizza.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Pizza Jalapeña Picante",
+    "description": "Para los amantes del picante: jalapeños y salchicha picante.",
+    "code": "SPICY10",
+    "price": 11.49,
+    "status": "available",
+    "stock": 20,
+    "thumbnails": "http://localhost:8080/images/pizzajalapeño.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Pizza de Pollo Buffalo",
+    "description": "Salsa buffalo picante, pollo a la parrilla y queso azul.",
+    "code": "BUFFALO11",
+    "price": 13.99,
+    "status": "available",
+    "stock": 18,
+    "thumbnails": "http://localhost:8080/images/pizzapollobufalo.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Pizza Americana",
+    "description": "Clásica y audaz, la Pizza Americana ofrece una base crujiente, salsa de tomate rica, queso fundido y sabrosas coberturas de pepperoni, salchicha y tocino.",
+    "code": "USAPZZ",
+    "price": 13.99,
+    "status": "disponible",
+    "stock": 16,
+    "thumbnails": "http://localhost:8080/images/pizzaamericana.jpg"
+  }
+]

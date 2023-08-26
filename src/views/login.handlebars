@@ -1,0 +1,40 @@
+<div class="loginContainer">
+  <div class="loginChild">
+    <div class="loginFormContainer">
+      <form class="loginForm" action="/login" method="POST">
+        <input
+          class="email loginInput"
+          id="email"
+          name="email"
+          type="text"
+          placeholder="E-mail"
+          required
+        />
+        <input
+          class="password loginInput"
+          id="password"
+          name="password"
+          type="text"
+          placeholder="Contraseña"
+          required
+        />
+        {{#if message}}
+          <span class="loginMessage">{{message}}</span>
+        {{else}}
+          <span class="loginMessage"></span>
+        {{/if}}
+        <input type="submit" value="Login" class="loginButton" />
+      </form>
+
+      <div class="divider">
+        <hr />
+        <span>O</span>
+        <hr />
+      </div>
+      <a class="registerHrefLogin" href="/register"><button
+          class="registerLoginButton"
+        >Sign up</button></a>
+    </div>
+
+  </div>
+</div>

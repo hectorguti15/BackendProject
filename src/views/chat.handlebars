@@ -1,0 +1,45 @@
+<div class="chatPage">
+  <nav class="vistaProductsNav">
+    <img
+      src="../images/pizza.ico"
+      alt="El lugar de las Pizzas"
+      class="principalIcon"
+    />
+  </nav>
+  <div class="ChatContainer">
+    <section class="sectionInfoMessage">
+      <h2 class="h2Chat">Bienvenido a nuestro chat</h2>
+      <div class="inputsChat">
+        <input
+          name="nombre"
+          id="nombre"
+          placeholder="Nombre"
+          aria-required="true"
+          value={{nombre}}
+          required
+          class="inputChat"
+        />
+        <textarea
+          name="message"
+          id="message"
+          aria-required="true"
+          placeholder="Ingresa un mensaje"
+          required
+          class="inputChat textaAreaChat"
+        ></textarea>
+        <input type="button" id="submitMessage" value="Enviar" />
+      </div>
+
+    </section>
+    <section class="sectionMessage">
+      <h2 class="h2Chat">Lista de mensajes</h2>
+      <div id="messagesContainer">
+
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="{{root}}/javascript/chatvista.js"></script>

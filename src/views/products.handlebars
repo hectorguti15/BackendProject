@@ -1,0 +1,100 @@
+<div class="pageContainer">
+  <nav class="vistaProductsNav">
+    <img
+      src="../images/pizza.ico"
+      alt="El lugar de las Pizzas"
+      class="principalIcon"
+    />
+    <h1 class="titleVistaProducts">BIENVENIDO AL LUGAR DE LAS PIZZAS</h1>
+    <div class="TopInfoUser">
+      <span id="cart" class="material-symbols-outlined cartIcon" data-cart-id="{{cartId}}">
+        shopping_cart
+      </span>
+      <div class="infoUserContainer">
+        <span class="material-symbols-outlined userIcon">
+          account_circle
+        </span>
+        <div class="infoUserChild">
+          <span class="infoUser userNameVistaProducts">{{userName}}</span>
+          <span class="infoUser userEmailVistaProducts">{{userEmail}}</span>
+        </div>
+        <div class="buttonLogOut">
+          <a class="hrefLogout" href="/logout"><Button
+              class="buttonLogOutChild"
+            >Log out</Button></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="productsContainer">
+    {{#each products}}
+      <div class="productChild">
+        <div class="imgProductContainer">
+          {{#if this.thumbnails}}
+            <img
+              class="imgProductChild"
+              src={{this.thumbnails}}
+              alt="{{this.title}}"
+            />
+          {{else}}
+            <img
+              class="imgProductChild"
+              src="../images/pizzaerror.jpg"
+              alt="No contamos con imagen de la pizza"
+            />
+          {{/if}}
+        </div>
+        <div class="infoProductContainer">
+          <span>{{this.title}}</span>
+          <span>{{this.description}}</span>
+          <div class="buyInfo">
+            <span>S/. {{this.price}}</span>
+            <button class="buttonProducts buyButton" data-product-id={{this.id}}>Agregar al carrito</button>
+          </div>
+
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="paginateToolsContainer">
+    <div class="paginateToolsChild">
+      {{#if hasPrevPage}}
+        <a
+          class="hrefProducts"
+          href="http://localhost:8080/vista/productos?page={{prevPage}}&limit={{limit}}&sort={{sort}}"
+        ><span class="material-symbols-outlined paginateIcon">
+            chevron_left
+          </span></a>
+      {{else}}
+        <span></span>
+      {{/if}}
+      <span>{{page}}</span>
+      {{#if hasNextPage}}
+        <a
+          class="hrefProducts"
+          href="http://localhost:8080/vista/productos?page={{nextPage}}&limit={{limit}}&sort={{sort}}"
+        ><span class="material-symbols-outlined paginateIcon">
+            chevron_right
+          </span></a>
+      {{else}}
+        <span></span>
+      {{/if}}
+    </div>
+    <hr class="hrProductsPaginate" />
+    <span>Total de páginas: {{totalPages}}</span>
+    <span>Contador de paginación: {{pagingCounter}}</span>
+  </div>
+
+  <div class="messageContainer">
+    <a href="/vista/chat" class="chathref">
+      <div class="messageChild">
+        <span class="material-symbols-outlined iconMessage">
+          forum
+        </span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="{{root}}/javascript/cartVista.js"></script>
