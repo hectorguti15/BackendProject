@@ -16,7 +16,7 @@ export function isUserOwner(req, res, next) {
   if (req.session?.user) {
     const currentUserCartId = req.session.user.cartId;
 
-    if (currentUserCartId === req.params.cartId) {
+    if (currentUserCartId === req.params.cid) {
       next();
     } else {
       return res.status(403).render("error", {

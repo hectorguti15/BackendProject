@@ -7,6 +7,6 @@ export const productsApiRouter = express.Router();
 
 productsApiRouter.get("/", getAllProducts);
 productsApiRouter.get("/:pid", getProduct);
-productsApiRouter.post("/", uploader.single("thumbnails"), createProduct);
+productsApiRouter.post("/",checkAdmin, uploader.single("thumbnails"), createProduct);
 productsApiRouter.put("/:pid",checkAdmin, updateProduct);
 productsApiRouter.delete("/:pid",checkAdmin, deleteProduct);
