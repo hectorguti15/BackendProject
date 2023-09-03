@@ -8,18 +8,26 @@ class userService {
   constructor(dao) {
     this.dao = dao;
   }
-  validateUser = async (user)  => {
+  validateUser = async (user) => {
     const { firstName, lastName, age, email, password } = user;
     if (!firstName || !lastName || !age || !email || !password) {
       throw new Error("Complete todos los campos");
     }
-  }
+  };
+  existUser = async (email) => {
+    try {
+      let result = await this.dao.existUser(email);
+      return result;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  };
   createUser = async (user) => {
     try {
       await this.validateUser(user);
       const cart = await CartsService.createCart();
       user.cartId = cart._id;
-      user.password = createHash(user.password)
+      user.password = createHash(user.password);
       const userDto = new UsersDto(user);
       const createdUser = this.dao.createUser(userDto);
       return createdUser;
@@ -27,21 +35,18 @@ class userService {
       throw new Error(e.message);
     }
   };
-  foundUser = async(user) =>{
-    try{
-        const foundUser = await this.dao.foundUser(user)
-        if(foundUser && isValidPassword(user.password, foundUser.password)){
-            return foundUser;
-        }
-        else{
-            throw new Error("Email o contraseñas invalido")
-        }
+  foundUser = async (user) => {
+    try {
+      const foundUser = await this.dao.foundUser(user);
+      if (foundUser && isValidPassword(user.password, foundUser.password)) {
+        return foundUser;
+      } else {
+        throw new Error("Email o contraseñas invalido");
+      }
+    } catch (e) {
+      throw new Error(e.message);
     }
-    catch(e){
-        throw new Error(e.message)
-    }
-  }
+  };
 }
 
-
-export const UserService = new userService(new Users)
+export const UserService = new userService(new Users());

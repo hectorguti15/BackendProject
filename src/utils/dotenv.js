@@ -17,5 +17,7 @@ export const configDotenv = () => {
     MODE: modo,
     PORT: process.env.PORT,
     MONGO_URL: process.env.MONGO_URL,
+    SECRET_PASSWORD: process.env.SECRET_PASSWORD,
+    USER_MAILER: process.env.USER_MAILER,
   };
 };

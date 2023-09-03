@@ -30,7 +30,7 @@ class cartsService {
       throw e;
     }
   }
-  async validateProductInCart(pid, cid) {
+  async validateProductInCart(pid, cid, owner) {
     try {
       const products = await ProductsService.getProducts();
       const carts = await this.getAllCarts();
@@ -38,22 +38,31 @@ class cartsService {
       if (!productValidation) {
         CustomError.createError({
           name: "Product doesnt exist",
-          cause: generateUserErrorInfo(user),
+          cause:"Intentas poner un producto inexistente",
           message: "Error trying to validate a product",
           code: EErros.INVALID_TYPES_ERROR,
         });
       } else {
-        //Base de datos
-        const cartValidation = carts.some((cart) => cart._id == cid);
-        //Memory
-        //const cartValidation = carts.some((cart) => cart.id == cid);
-        if (!cartValidation) {
+        if (productValidation.owner == owner) {
           CustomError.createError({
-            name: "Cart doesnt exist",
-            cause: generateUserErrorInfo(user),
-            message: "Error trying to valdiate a cart",
+            name: "Product doesnt exist",
+            cause: "No puedes agregar productos creados por ti",
+            message: "Error trying to validate a product",
             code: EErros.INVALID_TYPES_ERROR,
           });
+        } else {
+          //Base de datos
+          const cartValidation = carts.some((cart) => cart._id == cid);
+          //Memory
+          //const cartValidation = carts.some((cart) => cart.id == cid);
+          if (!cartValidation) {
+            CustomError.createError({
+              name: "Cart doesnt exist",
+              cause: "Intentas poner un carrito inexistente",
+              message: "Error trying to valdiate a cart",
+              code: EErros.INVALID_TYPES_ERROR,
+            });
+          }
         }
       }
     } catch (e) {
@@ -84,9 +93,9 @@ class cartsService {
       req.logger.error(e.message);
     }
   }
-  async putProductInCart(pid, cid) {
+  async putProductInCart(pid, cid, owner) {
     try {
-      await this.validateProductInCart(pid, cid);
+      await this.validateProductInCart(pid, cid, owner);
       const cart = await this.getCart(cid);
 
       const productIndex = cart.products.findIndex(
@@ -94,7 +103,6 @@ class cartsService {
       );
 
       if (productIndex !== -1) {
-    
         cart.products[productIndex].quantity += 1;
 
         const productsCart = new CartsDto(cart);
@@ -174,7 +182,7 @@ class cartsService {
       );
       return productsDeleted;
     } catch (e) {
-      req.logger.error(e.message)
+      req.logger.error(e.message);
     }
   }
   async createPurchase(cid, user) {
@@ -184,7 +192,6 @@ class cartsService {
       const newCart = [];
       let amount = 0;
       for (let product of cart.products) {
-    
         const quantity = product.quantity;
         const idProduct = product.product._id;
         const newStock = product.product.stock - quantity;
@@ -233,7 +240,7 @@ class cartsService {
         return ticket;
       }
     } catch (e) {
-      req.logger.error(e.message)
+      req.logger.error(e.message);
     }
   }
   generateRandomCode(longitud) {

@@ -57,6 +57,7 @@ export const createProduct = async (req, res) => {
     if (req.file) {
       product.thumbnailURL = "http://localhost:8080/img/" + req.file.filename;
     }
+    
     const productCreated = await ProductsService.createProduct(
       product.title || "",
       product.description || "",
@@ -64,7 +65,8 @@ export const createProduct = async (req, res) => {
       product.price || "",
       true,
       product.stock || "",
-      product.thumbnailURL || ""
+      product.thumbnailURL || "",
+      req.session.rol == "premium" ? req.session.rol.email : "admin"
     );
 
     res.status(200).json({
@@ -106,7 +108,9 @@ export const updateProduct = async (req, res) => {
 export const deleteProduct = (req, res) => {
   try {
     const id = req.params.pid;
-    const deleteProduct = ProductsService.deleteProduct(id);
+    const owner = req.session.user.rol;
+    const email = req.session.user.email;
+    const deleteProduct = ProductsService.deleteProduct(id,owner=="premium" ? email : "admin");
     res.status(200).json({
       status: "success",
       message: "Product deleted",

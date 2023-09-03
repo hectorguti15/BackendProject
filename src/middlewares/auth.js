@@ -5,11 +5,11 @@ export function checkUser(req, res, next) {
   return res.status(401).render("error", { msg: "Logeate correctamente" });
 }
 
-export function checkAdmin(req, res, next) {
-  if (req.session.user.email && req.session.rol == "admin") {
+export function checkAdminOrUserPremium(req, res, next) {
+  if (req.session.user.email && (req.session.user.rol == "admin" || req.session.user.rol == "premium")) {
     return next();
   }
-  return res.status(401).render("error", { msg: "Ingresa como administrador" });
+  return res.status(401).render("error", { msg: "Ingresa como administrador o paga para ser premium" });
 }
 
 export function isUserOwner(req, res, next) {

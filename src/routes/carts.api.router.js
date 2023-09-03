@@ -9,7 +9,7 @@ import {
   updateProductQuantity,
 } from "../controllers/carts.api.controller.js";
 import { isUserOwner } from "../middlewares/auth.js";
-// import { checkUser, isUserOwner } from "../middlewares/auth.js";
+
 
 export const cartsApiRouter = express.Router();
 cartsApiRouter.get("/:cid", getCart);

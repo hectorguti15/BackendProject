@@ -88,7 +88,8 @@ class productsService {
     price,
     status,
     stock,
-    thumbnails
+    thumbnails,
+    owner
   ) {
     try {
       this.validateProduct(title, description, code, price, status, stock);
@@ -100,6 +101,7 @@ class productsService {
         status,
         stock,
         thumbnails,
+        owner,
       });
       const productCreated = await this.dao.createProduct(products);
       return productCreated;
@@ -116,11 +118,22 @@ class productsService {
       throw new Error(e.message);
     }
   }
-  async deleteProduct(id) {
+  async deleteProduct(id, owner) {
     try {
-      this.validateProductId(id);
-      const deletedProduct = await this.dao.deleteProduct(id);
-      return deletedProduct;
+      if (owner == "admin") {
+        this.validateProductId(id);
+        const deletedProduct = await this.dao.deleteProduct(id);
+        return deletedProduct;
+      } else {
+        this.validateProductId(id);
+        let product = await this.getProduct(id);
+        if (product.owner == owner) {
+          const deletedProduct = await this.dao.deleteProduct(id);
+          return deletedProduct;
+        } else {
+          throw new Error("No puedes borrar un producto que no has creado");
+        }
+      }
     } catch {
       throw new Error(e.message);
     }

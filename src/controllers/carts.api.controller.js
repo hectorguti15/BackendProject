@@ -41,8 +41,8 @@ export const putProductInCart = async (req, res) => {
  
     let cid = req.params.cid;
     let pid = req.params.pid;
-   
-    const putProductInCart = await CartsService.putProductInCart(pid, cid);
+    const owner = req.session.user.email;
+    const putProductInCart = await CartsService.putProductInCart(pid, cid,owner);
     res.status(200).json({
       status: "success",
       message: "product added",

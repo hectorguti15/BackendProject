@@ -8,7 +8,8 @@ const productsSchema = new Schema({
     price: {type: Number, required: true},
     status: {type: Boolean, required: true},
     stock: {type: Number, required: true},
-    thumbnails: {type: String, required: false}
+    thumbnails: {type: String, required: false},
+    owner: {type: String, default: "admin"}
 });
 
 productsSchema.plugin(mongoosePaginate);
