@@ -1,0 +1,182 @@
+paths:
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene un carrito
+      tags:
+        - Carritos
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del carrito que se busca
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Carrito encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Cart"
+    put:
+      summary: Actualizar un carrito a partir del ID
+      tags:
+        - Carritos
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del cart que se busca
+          schema:
+            $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateCart"
+      responses:
+        "200":
+          description: Usuario modificado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Success"
+    delete:
+      summary: Elimina un carrito a partir del ID
+      tags:
+        - Carritos
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del cart que se busca
+          schema:
+            $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $type: null
+      responses:
+        "200":
+          description: Usuario modificado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Success"
+  /api/carts:
+    post:
+      summary: Crea un carrito
+      tags:
+        - Carritos
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Crea un carrito
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Carrito encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Cart"
+  /api/carts/{cid}/products/{pid}:
+    delete:
+      summary: Borra un producto del carrito
+      tags:
+        - Carritos
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Se busca el ID del carrito y del producto
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Producto eliminado
+          content:
+            application/json:
+              schema:
+                 $ref: "#components/schemas/Cart"
+    put:
+      summary: Actualiza un producto del carrito
+      tags:
+        - Carritos
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Se busca el ID del carrito y del producto
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Producto actualizado
+          content:
+            application/json:
+              schema:
+                 $ref: "#components/schemas/Cart"
+  /api/carts/{cid}/purchase:
+    get:
+      summary: Crea el ticket de una compra
+      tags:
+        - Carritos
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Se busca el ID del carrito 
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Productos comprados
+          content:
+            application/json:
+              schema:
+                 $ref: "#components/schemas/Cart"
+components:
+  schemas:
+    Success:
+      type: object
+      properties:
+        status:
+          type: String
+          description: success or error
+        message:
+          type: String
+          description: aclarando que ocurrio
+      example:
+        status: success
+        message: User updated
+    cart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        products:
+          type: Array
+          description: Productos añadidos
+      example:
+        _id: ObjectId("644081a93f0625dc193bc594")
+        products: [{product: ObjectId("64dfdf7cdd397dac259103c1"), quantity: 2}]
+  requestBodies:
+    updateUser:
+      type: object
+      properties:
+        _id:
+          type: String
+          description: ID generado por mongo
+        products:
+          type: Array
+          description: Productos en el carrito
+      example:
+        id: ObjectId("644081a93f0625dc193bc594")
+        products: [{product: ObjectId("64dfdf7cdd397dac259103c1"), quantity: 4}]

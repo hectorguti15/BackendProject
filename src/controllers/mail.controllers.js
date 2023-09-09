@@ -24,8 +24,7 @@ export const MailConfirmation = async (req, res) => {
 
     await transport.sendMail({
       from: "El lugar de las pizzas",
-      //   to: `${user.email}`,
-      to: "abcdefgutierrez1234@gmail.com",
+        to: `${user.email}`,
       subject: "Cambio de contraseña",
       html: `
       <!DOCTYPE html>

@@ -8,6 +8,8 @@ import handlebars from "express-handlebars";
 import passport from "passport";
 import flash from "connect-flash";
 import compression from "express-compression";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUiExpress from 'swagger-ui-express';
 
 import { connectMongo } from "./utils/connectionMongo.js";
 import { configDotenv } from "./utils/dotenv.js";
@@ -42,8 +44,25 @@ console.log("URL de MongoDB:", config.MONGO_URL);
 // console.log("URL de MongoDB:", config.MONGO_URL);
 
 app.use(addLogger);
-
 connectMongo(config.MONGO_URL);
+
+const specs = swaggerJSDoc({
+  definition: {
+    openapi: "3.0.1",
+
+    info: {
+      title: "Documentacion Backend Project",
+
+      description: "Este proyecto es sobre un ecommerce de pizzas",
+    },
+  },
+
+  apis: [`${__dirname}/docs/**/*.yaml`],
+});
+
+
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+
 
 const httpServer = app.listen(port, () => {
   console.log(`Customer connected on port ${port}`);
@@ -103,7 +122,7 @@ app.use("/loggerTest", loggerRouter);
 app.use("/mail", mailRouter);
 
 //Premium User
-app.use("/api/users/premium/:uid",checkUser, async (req, res) => {
+app.use("/api/users/premium/:uid", checkUser, async (req, res) => {
   let id = req.params.uid;
   let user = req.session.user;
   if (req.session.user.rol == "user") {
@@ -116,9 +135,9 @@ app.use("/api/users/premium/:uid",checkUser, async (req, res) => {
     await UserModel.updateOne({ id: id, rol: "user" });
   }
   res.status(200).json({
-    status:"success",
+    status: "success",
     playload: user,
-  })
+  });
 });
 
 //Session

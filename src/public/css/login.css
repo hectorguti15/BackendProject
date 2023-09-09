@@ -142,3 +142,9 @@ span{
   color: #FF1744;
   text-align: left;
 }
+.mailhref{
+  color:rgb(90, 90, 90);
+  font-family: "Poppins", sans-serif; 
+  font-size: 14px;
+
+}
