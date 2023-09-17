@@ -18,7 +18,15 @@ export const PassportAuthLog = async (req, res) => {
     };
     
     await req.session.save();
-    return res.redirect("/vista/productos");
+
+    return res.status(200).json(
+      {
+        status: "success",
+        message: "Usuario logeado",
+        playload: req.user
+      }
+    )
+    // return res.redirect("/vista/productos");
   } catch (e) {
     throw Error(e);
   }
@@ -43,7 +51,14 @@ export const PassportAuthReg = async (req, res) => {
   };
  
   await req.session.save();
-  return res.redirect("/vista/productos");
+  return res.status(200).json(
+    {
+      status: "success",
+      message: "Usuario registrado",
+      playload: req.user
+    }
+  )
+  // return res.redirect("/vista/productos");
 };
 
 

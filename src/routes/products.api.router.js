@@ -7,6 +7,9 @@ export const productsApiRouter = express.Router();
 
 productsApiRouter.get("/", getAllProducts);
 productsApiRouter.get("/:pid", getProduct);
-productsApiRouter.post("/",checkAdminOrUserPremium, uploader.single("thumbnails"), createProduct);
-productsApiRouter.put("/:pid",checkAdminOrUserPremium, updateProduct);
-productsApiRouter.delete("/:pid",checkAdminOrUserPremium, deleteProduct);
+//checkAdminOrUserPremium
+productsApiRouter.post("/", uploader.single("thumbnails"), createProduct);
+//checkAdminOrUserPremium
+productsApiRouter.put("/:pid", updateProduct);
+//checkAdminOrUserPremium
+productsApiRouter.delete("/:pid", deleteProduct);
