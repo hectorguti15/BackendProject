@@ -26,6 +26,7 @@ import { mailRouter } from "./routes/mail.router.js";
 import errorHandler from "./middlewares/error.js";
 import { mockingProducts } from "./routes/mockingproducts.js";
 import { productsApiRouter } from "./routes/products.api.router.js";
+import { apiUserRouter } from "./routes/users.api.router.js";
 import { loggerRouter } from "./routes/logger.router.js";
 import { addLogger } from "./utils/logger.js";
 import { UserModel } from "./DAO/mongo/models/users.api.model.js";
@@ -122,23 +123,7 @@ app.use("/loggerTest", loggerRouter);
 app.use("/mail", mailRouter);
 
 //Premium User
-app.use("/api/users/premium/:uid", checkUser, async (req, res) => {
-  let id = req.params.uid;
-  let user = req.session.user;
-  if (req.session.user.rol == "user") {
-    req.session.user.rol = "premium";
-    await req.session.save();
-    await UserModel.updateOne({ id: id, rol: "premium" });
-  } else {
-    req.session.user.rol = "user";
-    await req.session.save();
-    await UserModel.updateOne({ id: id, rol: "user" });
-  }
-  res.status(200).json({
-    status: "success",
-    playload: user,
-  });
-});
+app.use("/api/users", apiUserRouter)
 
 //Session
 app.use("/sessions/current", (req, res) => {

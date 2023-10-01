@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import monsoosePaginate from 'mongoose-paginate-v2';
+import { Schema, model } from "mongoose";
+import monsoosePaginate from "mongoose-paginate-v2";
 
 const schema = new Schema({
   firstName: {
@@ -20,17 +20,29 @@ const schema = new Schema({
     max: 100,
     unique: true,
   },
-  cartId:{
+  cartId: {
     type: Schema.Types.ObjectId,
-    ref: 'carts',
+    ref: "carts",
   },
   rol: {
     type: String,
-    default: 'user'
+    default: "user",
   },
   age: {
     type: Number,
   },
+  documents: {
+    type: [
+      {
+        name: {
+          type: String,
+        },
+        reference: { type: String },
+      },
+    ],
+    default: [],
+  },
+  last_connection: { type: Date },
 });
 schema.plugin(monsoosePaginate);
-export const UserModel = model('users', schema);
+export const UserModel = model("users", schema);

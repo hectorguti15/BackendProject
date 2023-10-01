@@ -1,0 +1,56 @@
+<div class="userDocumentsContainerPage">
+  <div class="userDocumentsPage">
+    <form
+      class="formUserDocument"
+      action="/api/users/{{uid}}/documents"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <label class="labelDocument" for="profile">Perfil</label>
+      <input class="uploadDocument" type="file" name="profile"  id="profile"  />
+
+      <label class="labelDocument" for="products">Productos</label>
+      <input class="uploadDocument" type="file" name="products"  id="products" />
+
+      <label class="labelDocument">Documentos</label>
+
+      <label class="labelDocument" for="identificacion">Identificación</label>
+      <input
+        class="uploadDocument"
+        type="file"
+        name="identification"
+        
+        id="identification"
+      />
+
+      <label class="labelDocument" for="comprobante_cuenta">Comprobante de Cuenta</label>
+      <input
+        class="uploadDocument"
+        type="file"
+        name="check_account"
+      
+        id="check_account"
+      />
+
+      <label class="labelDocument" for="comprobante_domicilio">Comprobante de Domicilio</label>
+      <input
+        class="uploadDocument"
+        type="file"
+        name="check_address"
+      
+        id="check_address"
+      />
+
+      <label class="labelDocument" for="otros">Otros</label>
+      <input
+        class="uploadDocument"
+        type="file"
+        name="documents"
+      
+        id="documents"
+      />
+
+      <button class="buttonDocumentSubmit" type="submit">Enviar</button>
+    </form>
+  </div>
+</div>

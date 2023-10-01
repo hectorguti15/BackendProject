@@ -34,6 +34,12 @@ export function initPassport() {
               req.flash("loginError", "Email o contraseña incorrecta")
             );
           }
+          const newConnectionDate = new Date();
+          UserModel.findOneAndUpdate(
+            { email: username }, 
+            { last_connection: newConnectionDate }, 
+            { new: true } 
+          )
           return done(null, user);
         } catch (e) {
           return done(e);
@@ -72,6 +78,7 @@ export function initPassport() {
             rol: "user",
             password: createHash(password),
             cartId: newCart._id,
+            last_connection: new Date()
           };
 
           let userCreated = await UserModel.create(newUser);

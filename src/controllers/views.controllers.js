@@ -1,3 +1,5 @@
+import { UserModel } from "../DAO/mongo/models/users.api.model.js";
+
 export const Login = (req, res) => {                                                                          
   res.render("login", { message: req.flash("loginError") });
 };
@@ -19,14 +21,14 @@ export const PassportAuthLog = async (req, res) => {
     
     await req.session.save();
 
-    return res.status(200).json(
-      {
-        status: "success",
-        message: "Usuario logeado",
-        playload: req.user
-      }
-    )
-    // return res.redirect("/vista/productos");
+    // return res.status(200).json(
+    //   {
+    //     status: "success",
+    //     message: "Usuario logeado",
+    //     playload: req.user
+    //   }
+    // )
+    return res.redirect("/vista/productos");
   } catch (e) {
     throw Error(e);
   }
@@ -51,18 +53,23 @@ export const PassportAuthReg = async (req, res) => {
   };
  
   await req.session.save();
-  return res.status(200).json(
-    {
-      status: "success",
-      message: "Usuario registrado",
-      playload: req.user
-    }
-  )
-  // return res.redirect("/vista/productos");
+  // return res.status(200).json(
+  //   {
+  //     status: "success",
+  //     message: "Usuario registrado",
+  //     playload: req.user
+  //   }
+  // )
+  return res.redirect("/vista/productos");
 };
 
 
 export const LogOut = (req, res) => {
+  UserModel.findOneAndUpdate(
+    { email: req.session.user.email }, 
+    { last_connection: new Date() }, 
+    { new: true } 
+  )
   req.session.destroy((err) => {
     if (err) {
       return res.render("error", { msg: "no se pudo cerrar la session" });
