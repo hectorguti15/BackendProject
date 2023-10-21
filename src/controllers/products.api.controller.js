@@ -57,7 +57,10 @@ export const createProduct = async (req, res) => {
    
     let product = req.body;
     if (req.file) {
-      product.thumbnailURL = "http://localhost:8080/images/" + req.file.filename;
+      //local
+      //product.thumbnailURL = "http://localhost:8080/images/" + req.file.filename;
+      //Prod
+      product.thumbnailURL = "https://finalbackendproject.onrender.com/images/" + req.file.filename;
     }
    
 
