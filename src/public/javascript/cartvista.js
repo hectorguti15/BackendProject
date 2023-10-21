@@ -7,8 +7,7 @@ for (let i = 0; i < addButtons.length; i++) {
   button.addEventListener("click", function addToCart() {
     const productId = this.getAttribute("data-product-id");
     const cartId = document.getElementById('cart').getAttribute('data-cart-id');
-
-    console.log(cartId,productId)
-    socket.emit("addProductInCart", productId, cartId)
+    const owner = document.getElementById('cart').getAttribute('data-owner');
+    socket.emit("addProductInCart", productId, cartId, owner)
   });
 }

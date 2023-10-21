@@ -57,3 +57,17 @@
   transition: 0.3s;
   cursor: pointer;
 }
+.buttonFinishBuyRef{
+  margin-top: 20px;
+}
+
+.buttonFinishBuy{
+  background-color: #ff1744;
+  color: whitesmoke;
+  border: none;
+  width: 150px;
+  height: 40px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  border-radius: 12px;
+}

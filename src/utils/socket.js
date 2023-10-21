@@ -46,12 +46,11 @@ export function connectSocket(httpServer) {
       }
     });
 
-    socket.on("addProductInCart", async (productId,cartId) => {
+    socket.on("addProductInCart", async (productId,cartId, owner) => {
       try {
-      
-        await CartsService.putProductInCart(productId, cartId);
+        await CartsService.putProductInCart(productId, cartId, owner);
       } catch (e) {
-        req.logger.error(e.message)
+        throw Error(e.message);
       }
     });
   });

@@ -6,7 +6,7 @@ import { transport } from "../utils/nodemailer.js";
 import { generateSecureRandomCode } from "../utils/randomGenerateCode.js";
 
 export const foundMailUser = async (req, res, email) => {
-  res.render("cambio-contraseña-question");
+  res.render("change-password-question");
 };
 
 export const MailConfirmation = async (req, res) => {
@@ -106,7 +106,7 @@ export const mailChangePasswordValidated = async (req, res) => {
 
     const result = await codePasswordModel.findOne({ code: code });
     const user = await UserModel.findOne({ email: email });
-    console.log(result.code,result.expire, new Date().getTime())
+   
     if(result.expire > new Date().getTime()){
       ;
       if(email == result.email){
@@ -118,7 +118,7 @@ export const mailChangePasswordValidated = async (req, res) => {
         res.render("error", {msg: "Algo salio mal"});
       }
       let userUpdated = await UserModel.updateOne({email: email, password: createHash(password)});
-      console.log(userUpdated);
+   
       res.render("login");
     }
     else{

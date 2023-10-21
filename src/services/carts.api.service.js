@@ -33,6 +33,7 @@ class cartsService {
   async validateProductInCart(pid, cid, owner) {
     try {
       const products = await ProductsService.getProducts();
+      
       const carts = await this.getAllCarts();
       const productValidation = products.some((product) => product._id == pid);
       if (!productValidation) {
@@ -43,6 +44,7 @@ class cartsService {
           code: EErros.INVALID_TYPES_ERROR,
         });
       } else {
+       
         if (productValidation.owner == owner) {
           CustomError.createError({
             name: "Product doesnt exist",
@@ -51,8 +53,10 @@ class cartsService {
             code: EErros.INVALID_TYPES_ERROR,
           });
         } else {
+         
           //Base de datos
           const cartValidation = carts.some((cart) => cart._id == cid);
+          
           //Memory
           //const cartValidation = carts.some((cart) => cart.id == cid);
           if (!cartValidation) {
@@ -63,8 +67,10 @@ class cartsService {
               code: EErros.INVALID_TYPES_ERROR,
             });
           }
+      
         }
       }
+     
     } catch (e) {
       throw e.message;
     }
@@ -97,7 +103,6 @@ class cartsService {
     try {
       await this.validateProductInCart(pid, cid, owner);
       const cart = await this.getCart(cid);
-
       const productIndex = cart.products.findIndex(
         (product) => product.product._id == pid
       );
@@ -125,9 +130,10 @@ class cartsService {
       req.logger.error(e.message);
     }
   }
-  async deleteProductCart(pid, cid) {
+  async deleteProductCart(pid, cid, owner) {
     try {
-      await this.validateProductInCart(pid, cid);
+      await this.validateProductInCart(pid, cid,owner);
+      console.log("que chucha pasa aca");
       const cart = await this.getCart(cid);
       cart.products = cart.products.filter((product) => product.product != pid);
       const productsCart = new CartsDto(cart);

@@ -16,17 +16,63 @@ export default class Users {
       throw new Error(e);
     }
   };
-  foundUser = async (user) => {
-    const foundUser = await UserModel.findOne({ email: user.email });
-    return foundUser;
-  };
   existUser = async (email) => {
-    try{
+    try {
       const existerUser = await UserModel.findOne({ email: email });
-    return existerUser;
+      return existerUser;
+    } catch (e) {
+      throw e;
     }
-    catch(e){
-      throw(e)
+  };
+  foundUser = async (id) => {
+    try {
+      const foundUser = await UserModel.findOne({ _id: id });
+      return foundUser;
+    } catch (e) {
+      throw e;
+    }
+  };
+  updateRol = async (id, rol) => {
+    try {
+      const updateRol = await UserModel.updateOne({ _id: id }, { rol: rol });
+      return updateRol;
+    } catch (e) {
+      throw e;
+    }
+  };
+  updateDocuments = async (id, documents) => {
+    try {
+      const updateDocuments = await UserModel.findByIdAndUpdate(
+        id,
+        { $push: { documents: { $each: documents } } },
+        { new: true }
+      );
+      return updateDocuments;
+    } catch (e) {
+      throw e;
+    }
+  };
+  getUsers = async (fechaDiasAtras) => {
+    try {
+      const users = await UserModel.find({});
+      if (fechaDiasAtras) {
+        await UserModel.find({
+          last_connection: { $lt: fechaDiasAtras },
+        });
+      }
+      return users;
+    } catch (e) {
+      throw e;
+    }
+  };
+  deleteUsers = async (fechaDiasAtras) => {
+    try {
+      const deletedUsers = await UserModel.deleteMany({
+        last_connection: { $lt: fechaDiasAtras },
+      });
+      return deletedUsers;
+    } catch (e) {
+      throw e;
     }
   };
 }

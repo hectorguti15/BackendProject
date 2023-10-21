@@ -15,6 +15,52 @@ paths:
                   $ref: "#components/schemas/product"
         "500":
           description: Error del servidor. Usualmente generando la query o falla la conexion a la DB
+    post:
+      summary: Agrega un producto
+      tags:
+        - Productos
+      parameters:
+        - name: title
+          in: path
+          required: true
+          description: Titulo del producto a agregar
+          schema:
+            $type: String
+        - name: description
+          in: path
+          required: true
+          description: Descripcion del producto a agregar
+          schema:
+            $type: String
+        - name: code
+          in: path
+          required: true
+          description: Codigo del producto a agregar
+          schema:
+            $type: String
+        - name: price
+          in: path
+          required: true
+          description: Precio del producto a agregar
+          schema:
+            $type: Number
+        - name: stock
+          in: path
+          required: true
+          description: Stock del producto a agregar
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Producto agregado a la base de datos satisfacotriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/product"
+        "500":
+          description: Error del servidor. Usualmente generando la query o falla la conexion a la DB
   /api/products/{pid}:
     get:
       summary: Obtiene un producto
@@ -25,6 +71,50 @@ paths:
           in: path
           required: true
           description: ID del producto que se busca
+          schema:
+            $type: String
+        - title: title
+      responses:
+        "200":
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/product"
+    put:
+      get:
+      summary: Obtiene el id de un producto y lo actualiza con los campos que se manden
+      tags:
+        - Productos
+      parameters:
+        - name: uid
+          in: path
+          description: ID del producto que se busca
+          schema:
+            $type: String
+        - name: title
+          in: path
+          description: Titulo del producto a agregar
+          schema:
+            $type: String
+        - name: description
+          in: path
+          description: Descripcion del producto a agregar
+          schema:
+            $type: String
+        - name: code
+          in: path
+          description: Codigo del producto a agregar
+          schema:
+            $type: String
+        - name: price
+          in: path
+          description: Precio del producto a agregar
+          schema:
+            $type: Number
+        - name: stock
+          in: path
+          description: Stock del producto a agregar
           schema:
             $type: String
       responses:
@@ -69,16 +159,16 @@ components:
         status:
           type: String
           description: Estado del producto
-        stock: 
+        stock:
           type: Number
           description: Cantidad existente del producto
-        thumbnails: 
+        thumbnails:
           type: String
           description: URL del producto
-        onwer: 
+        onwer:
           type: String
           description: creador del producto
-          
+
       example:
         _id: ObjectId("64dfdf7cdd397dac259103c1"),
         title: Pizza Margarita,
@@ -89,4 +179,27 @@ components:
         stock: 25,
         thumbnails: http://localhost:8080/images/margeritapizza.jpg,
         owner: "admin"
-  
+    productUpload:
+      type: object
+      properties:
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripcion del producto
+        code:
+          type: String
+          description: Codigo del producto
+        price:
+          type: Number
+          description: Precio del producto
+        stock:
+          type: Number
+          description: Cantidad existente del producto
+      example:
+        title: Pizza Margarita,
+        description: Clásica pizza italiana con tomate, mozzarella y albahaca.,
+        code: MARG01,
+        price: 9.99,
+        stock: 25,

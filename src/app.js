@@ -9,13 +9,12 @@ import passport from "passport";
 import flash from "connect-flash";
 import compression from "express-compression";
 import swaggerJSDoc from "swagger-jsdoc";
-import swaggerUiExpress from 'swagger-ui-express';
+import swaggerUiExpress from "swagger-ui-express";
 
 import { connectMongo } from "./utils/connectionMongo.js";
 import { configDotenv } from "./utils/dotenv.js";
 import { __dirname } from "./dirname.js";
 import { viewsRouter } from "./routes/views.router.js";
-import { initPassport } from "./config/passport.config.js";
 import { productsVistaRouter } from "./routes/products.vista.router.js";
 import { realTimeProductsRouter } from "./routes/realTimeProducts.router.js";
 import { connectSocket } from "./utils/socket.js";
@@ -29,20 +28,16 @@ import { productsApiRouter } from "./routes/products.api.router.js";
 import { apiUserRouter } from "./routes/users.api.router.js";
 import { loggerRouter } from "./routes/logger.router.js";
 import { addLogger } from "./utils/logger.js";
-import { UserModel } from "./DAO/mongo/models/users.api.model.js";
+import { initPassport } from "./services/passport.config.js";
 import { checkUser } from "./middlewares/auth.js";
 
-const app = express();
+export const app = express();
 const config = configDotenv();
 const port = config.PORT;
 
 console.log("Modo:", config.MODE);
 console.log("Puerto:", config.PORT);
 console.log("URL de MongoDB:", config.MONGO_URL);
-
-//si quieres solo un enviroment
-// console.log("Puerto:", config.PORT);
-// console.log("URL de MongoDB:", config.MONGO_URL);
 
 app.use(addLogger);
 connectMongo(config.MONGO_URL);
@@ -61,9 +56,7 @@ const specs = swaggerJSDoc({
   apis: [`${__dirname}/docs/**/*.yaml`],
 });
 
-
-app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
-
+app.use("/apidocs", swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 
 const httpServer = app.listen(port, () => {
   console.log(`Customer connected on port ${port}`);
@@ -123,10 +116,14 @@ app.use("/loggerTest", loggerRouter);
 app.use("/mail", mailRouter);
 
 //Premium User
-app.use("/api/users", apiUserRouter)
+app.use("/api/users", apiUserRouter);
+
+app.use("/buy", checkUser, (req, res) => {
+  res.render("buy-finished");
+});
 
 //Session
-app.use("/sessions/current", (req, res) => {
+app.use("/sessions/current", checkUser, (req, res) => {
   let user = req.session.user;
   return res.status(200).json({
     status: "success",

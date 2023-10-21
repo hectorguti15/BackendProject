@@ -1,6 +1,7 @@
 import { UserModel } from "../DAO/mongo/models/users.api.model.js";
 
-export const Login = (req, res) => {                                                                          
+export const Login = (req, res) => {
+
   res.render("login", { message: req.flash("loginError") });
 };
 
@@ -9,7 +10,7 @@ export const PassportAuthLog = async (req, res) => {
     if (!req.user) {
       return res.json({ error: "Algo salio mal :(, intentalo nuevamente" });
     }
-  
+
     req.session.user = {
       _id: req.user._id,
       email: req.user.email,
@@ -18,7 +19,7 @@ export const PassportAuthLog = async (req, res) => {
       cartId: req.user.cartId,
       rol: req.user.rol,
     };
-    
+
     await req.session.save();
 
     // return res.status(200).json(
@@ -42,7 +43,7 @@ export const PassportAuthReg = async (req, res) => {
   if (!req.user) {
     return res.json({ error: "Algo salio mal :(, intentalo nuevamente" });
   }
-  
+
   req.session.user = {
     _id: req.user._id,
     email: req.user.email,
@@ -51,7 +52,7 @@ export const PassportAuthReg = async (req, res) => {
     cartId: req.user.cartId,
     rol: req.user.rol,
   };
- 
+
   await req.session.save();
   // return res.status(200).json(
   //   {
@@ -63,13 +64,12 @@ export const PassportAuthReg = async (req, res) => {
   return res.redirect("/vista/productos");
 };
 
-
-export const LogOut = (req, res) => {
-  UserModel.findOneAndUpdate(
-    { email: req.session.user.email }, 
-    { last_connection: new Date() }, 
-    { new: true } 
-  )
+export const LogOut = async (req, res) => {
+  await UserModel.findOneAndUpdate(
+    { email: req.session.user.email },
+    { last_connection: new Date() },
+    { new: true }
+  );
   req.session.destroy((err) => {
     if (err) {
       return res.render("error", { msg: "no se pudo cerrar la session" });

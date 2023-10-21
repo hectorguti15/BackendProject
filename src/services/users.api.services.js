@@ -35,10 +35,10 @@ class userService {
       throw new Error(e.message);
     }
   };
-  foundUser = async (user) => {
+  checkUserEmailAndPassword = async (user) => {
     try {
-      const foundUser = await this.dao.foundUser(user);
-      if (foundUser && isValidPassword(user.password, foundUser.password)) {
+      const existUser = await this.dao.existUser(user.email);
+      if (existUser && isValidPassword(user.password, foundUser.password)) {
         return foundUser;
       } else {
         throw new Error("Email o contraseñas invalido");
@@ -47,6 +47,46 @@ class userService {
       throw new Error(e.message);
     }
   };
+  foundUser = async (id) => {
+    try {
+      const foundUser = await this.dao.foundUser(id);
+      return foundUser;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  };
+  updateRol = async (id,rol) => {
+    try {
+      const updateRol = await this.dao.updateRol(id,rol);
+      return updateRol;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  };
+  updateDocuments = async (id,documents) => {
+    try {
+      const updateRol = await this.dao.updateDocuments(id,documents);
+      return updateRol;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  };
+  getUsers = async(fechaDiasAtras)=>{
+    try {
+      const users = await this.dao.getUsers(fechaDiasAtras);
+      return users;
+    } catch (e) {
+      throw e;
+    }
+  }
+  deleteUsers = async(fechaDiasAtras)=>{
+    try {
+      const users = await this.dao.deleteUsers(fechaDiasAtras);
+      return users;
+    } catch (e) {
+      throw e;
+    }
+  }
 }
 
 export const UserService = new userService(new Users());

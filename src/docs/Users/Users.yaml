@@ -1,0 +1,78 @@
+paths:
+  /api/users/premium/{uid}:
+    get:
+      summary: Convierte a premium el usuario al cual se pasa por su ID
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Usuario cambiado de rol exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/User"
+  /api/users:
+    get:
+      summary: Devuelve todos los users
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Crea un carrito con su respectivo id y su lista elementos inicial vacía.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/User"
+    delete:
+      summary: Elimina a los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Elimina a los usuarios con inactividad mayor a 2 días
+          
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID del usuario
+        firstName:
+          type: string
+          description: Nombre del usuario
+        lastName:
+          type: string
+          description: Apellido del usuario
+        email:
+          type: string
+          description: Correo electrónico del usuario
+        password:
+          type: string
+          description: Contraseña del usuario
+        cartId:
+          type: string
+          description: ID del carrito del usuario
+        rol:
+          type: string
+          description: Rol del usuario
+        last_connection:
+          type: string
+          format: date-time
+          description: Fecha y hora de la última conexión del usuario
+        documents:
+          type: array
+          items:
+            type: object
+            description: Documentos relacionados con el usuario
+        
+    
+

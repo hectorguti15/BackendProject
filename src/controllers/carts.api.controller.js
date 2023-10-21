@@ -38,7 +38,6 @@ export const createCart = async (req, res) => {
 
 export const putProductInCart = async (req, res) => {
   try {
- 
     let cid = req.params.cid;
     let pid = req.params.pid;
     const owner = req.session.user.email;
@@ -60,7 +59,9 @@ export const putProductInCart = async (req, res) => {
 export const deleteProductCart = async (req, res) => {
   try {
     const { cid, pid } = req.params;
-    const productDeleted = await CartsService.deleteProductCart(pid, cid);
+    const owner = req.session.user.email;
+    console.log( pid , cid , owner);
+    const productDeleted = await CartsService.deleteProductCart(pid, cid,owner);
     res.status(200).json({
       status: "success",
       message: "Product deleted",

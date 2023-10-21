@@ -9,6 +9,8 @@ export const getAllProducts = async (req, res) => {
       const { limit, page, sort } = req.query;   
       const productsList = await ProductsService.getAllProducts(limit, page , sort);
 
+      const owner = req.session.user.rol;
+      
       let products = productsList.docs.map((product) => {
         return {
           id: product._id,
@@ -32,6 +34,7 @@ export const getAllProducts = async (req, res) => {
         limit: limit,
         sort: sort,
         cartId: cartId,
+        owner: owner
       });
     } catch (e) {
       res.status(400).json({

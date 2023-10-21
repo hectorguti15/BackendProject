@@ -4,7 +4,7 @@ import { createHash, isValidPassword } from "../utils/bcrypt.js";
 import fetch from "node-fetch";
 import GitHubStrategy from "passport-github2";
 import { UserModel } from "../DAO/mongo/models/users.api.model.js";
-import { CartsService } from "../services/carts.api.service.js";
+import { CartsService } from "./carts.api.service.js";
 
 const LocalStrategy = local.Strategy;
 export function initPassport() {
@@ -35,7 +35,8 @@ export function initPassport() {
             );
           }
           const newConnectionDate = new Date();
-          UserModel.findOneAndUpdate(
+          
+          await UserModel.findOneAndUpdate(
             { email: username }, 
             { last_connection: newConnectionDate }, 
             { new: true } 
@@ -56,7 +57,7 @@ export function initPassport() {
       },
       async (req, username, password, done) => {
         try {
-          const { email, firstName, lastName } = req.body;
+          const { email, firstName, lastName , rol} = req.body;
           let user = await UserModel.findOne({ email: username });
           if (user) {
             req.logger.info("Ya existe este usuario con este email");
@@ -70,16 +71,17 @@ export function initPassport() {
             );
           }
           const newCart = await CartsService.createCart();
-
+          
           const newUser = {
             email,
             firstName,
             lastName,
-            rol: "user",
+            rol: rol || "user",
             password: createHash(password),
             cartId: newCart._id,
             last_connection: new Date()
           };
+          
 
           let userCreated = await UserModel.create(newUser);
           return done(null, userCreated);
@@ -137,7 +139,7 @@ export function initPassport() {
             );
           }
         } catch (e) {
-          reqq.logger.error(e)
+          req.logger.error(e)
           return done(e);
         }
       }

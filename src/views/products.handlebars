@@ -7,9 +7,11 @@
     />
     <h1 class="titleVistaProducts">BIENVENIDO AL LUGAR DE LAS PIZZAS</h1>
     <div class="TopInfoUser">
-      <span id="cart" class="material-symbols-outlined cartIcon" data-cart-id="{{cartId}}">
+      <a href="/vista/carts/{{cartId}}">
+        <span id="cart" class="material-symbols-outlined cartIcon" data-cart-id="{{cartId}}" data-owner="{{owner}}">
         shopping_cart
       </span>
+      </a>
       <div class="infoUserContainer">
         <span class="material-symbols-outlined userIcon">
           account_circle

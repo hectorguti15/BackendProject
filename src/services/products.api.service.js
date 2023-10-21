@@ -120,12 +120,11 @@ class productsService {
   }
   async deleteProduct(id, owner) {
     try {
+      this.validateProductId(id);
       if (owner == "admin") {
-        this.validateProductId(id);
         const deletedProduct = await this.dao.deleteProduct(id);
         return deletedProduct;
       } else {
-        this.validateProductId(id);
         let product = await this.getProduct(id);
         if (product.owner == owner) {
           const deletedProduct = await this.dao.deleteProduct(id);
@@ -134,7 +133,7 @@ class productsService {
           throw new Error("No puedes borrar un producto que no has creado");
         }
       }
-    } catch {
+    } catch(e) {
       throw new Error(e.message);
     }
   }
